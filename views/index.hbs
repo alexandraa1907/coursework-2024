@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Lex
+    </title>
+    <style>
+        /* styles */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="menu">
+                <div class="text">
+                    <div class="registration">
+                        <a href="#regBlock">Регистрация</a>
+                        <a href="#lawyersBlock">Юристы</a>
+                    </div>
+                </div>
+                <div class="logo">
+                    <img src="images/logo1.jpg" alt="logo">
+                </div>
+                <div class="text">
+                    <div class="registration">
+                        <a href="#specBlock">Специализация</a>
+                        <a href="#paymentBlock">Оплата</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section>
+                <div class="img_form">
+
+                </div>
+
+            </section>
+
+            <div class="clear"></div>
+            <p class="cell_title" id="lawyersBlock">Юристи</p>
+            <div class="section">
+                {{#each lawyers }}
+                <div class="block-lawyer1">
+                    <div class="lawyer1">
+                        <img src="images/{{this.id}}.jpg">
+                        <p>• {{this.name}}</p>
+                        <p>• 15 років досвіду</p>
+                        <p>• {{this.spec}} ({{this.price}} грн)</p>
+                    </div>
+                </div>
+                {{/each }}
+            </div>
+            <div class="form_section">
+                <div class="login-form">
+                    <p class="login_title" id="regBlock">Реєстрація на консультацію</p>
+                    <div class="field">
+                        <form action="/create-consul" method="POST" class="form-style">
+                            <div class="input-space">
+                                <input type="text" name="clientName" placeholder="Ім'я" class="text" required>
+                            </div>
+                            <div class="input-space">
+                                <input type="date" name="date" class="date-input" required>
+                            </div>
+                            <div class="input-space select-style">
+                                <select name="lawyerSpecial" required>
+                                    {{#each lawyers }}
+                                    <option value="{{this.id}}-{{this.id_special}}">
+                                        {{this.name}}
+                                    </option>
+                                    {{/each }}
+                                </select>
+                            </div>
+                            <input type="hidden" name="adminId" value="{{admin.id}}">
+                            <div class="button-form">
+                                <button type="submit">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-block">
+                <p class="cell_title" id="specBlock">Спеціалізація</p>
+                <div class="special-cell">
+                    <div class="special">
+                        <p class="special_title">Податкова правова консультація:</p>
+                        Ця спеціалізація включає в себе консультування клієнтів з питань оподаткування, включно з
+                        роз'ясненням податкових обов'язків, підготовку декларацій та оптимізацію податкових
+                        платежів.
+                    </div>
+                    <div class="special">
+                        <p class="special_title">Корпоративна правова консультація:</p>
+                        Юристи, що спеціалізуються на корпоративному праві, надають консультації з питань створення,
+                        реєстрації та управління компаніями, включаючи подготовку договорів та угод.
+                    </div>
+                </div>
+
+                <div class="special-cell">
+
+                    <div class="special">
+                        <p class="special_title">Трудова правова консультація:</p>
+                        Ця спеціалізація включає в себе консультування з питань трудового законодавства, укладення
+                        трудових договорів, захист прав працівників та вирішення трудових спорів.
+                    </div>
+                    <div class="special">
+                        <p class="special_title">Цивільно-правова консультація:</p>
+                        Юристи, спеціалізовані на цивільному праві, надають консультації з питань громадянського
+                        законодавства, вирішення спорів між особами та укладення цивільно-правових угод.
+                    </div>
+                </div>
+                <div class="special-cell">
+
+                    <div class="special">
+                        <p class="special_title">Сімейно-шлюбна правова консультація:</p>
+                        Ця спеціалізація включає в себе консультування щодо сімейного законодавства, розлучення,
+                        усиновлення та інших питань, пов'язаних із сімейним життям.
+                    </div>
+                    <div class="special">
+                        <p class="special_title">Нерухомість та земельне право: </p>
+                        Юристи, що спеціалізуються у цій галузі, надають консультації з питань придбання, продажу,
+                        оренди та володіння нерухомістю та землею.
+                    </div>
+                </div>
+                <div class="special-cell">
+
+                    <div class="special">
+                        <p class="special_title">Інтелектуальна власність:</p>
+                        Спеціалісти з інтелектуальної власності надають консультації з питань захисту авторських
+                        прав,
+                        патентів, торгових марок та інших видів інтелектуальної власності.
+                    </div>
+                    <div class="special">
+                        <p class="special_title">Кримінально-правова консультація: </p>
+                        Юристи, що спеціалізуються на кримінальному праві, надають консультації з питань
+                        кримінального
+                        законодавства, захист прав підсудних та представлення їх у суді.
+                    </div>
+                </div>
+                <div class="special-cell">
+
+                    <div class="special">
+                        <p class="special_title"> Фінансова правова консультація: </p>
+                        Спеціалісти у цій галузі надають консультації з питань фінансового законодавства,
+                        банкрутства,
+                        інвестицій та інших фінансових питань.
+                    </div>
+                    <div class="special">
+                        <p class="special_title">Міжнародне право: </p>
+                        Консультанти з міжнародного права допомагають клієнтам з питань правової регламентації
+                        міжнародних відносин, угод та конфліктів у міжнародному контексті.
+                    </div>
+                </div>
+            </div>
+
+            <p class="cell_title" id="paymentBlock">Оплата</p>
+
+            <div class="admin-block">
+                <div class="block-lawyer2">
+
+                    <img src="images/admin.jpg">
+                    <p>• {{admin.name}}</p>
+                    <p>• 5 років досвіду</p>
+                    <p>• Адміністратор</p>
+                </div>
+                <div>
+                    <a href="/payment-page">Перейти на сторінку оплат</a><br>
+                    <a href="/queries">Перейти до звітів</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
