@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Lex
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h2>
+                <a href="/">На головну</a>
+            </h2>
+        </div>
+        <div class="table-flex">
+            <table class="table1" id="clients-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Назва</th>
+                    <th>Ціна</th>
+                </tr>
+                {{#each specials}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.price}}</td>
+                </tr>
+                {{/each}}
+            </table>
+
+            <table class="table1">
+                <tr>
+                    <th>ID</th>
+                    <th>Юрист</th>
+                    <th>Спеціалізація</th>
+                    <th></th>
+                </tr>
+                {{#each lawyers}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.spec}}</td>
+                    <td>
+                        <div class="table-buttons">
+                            <form action="/delete-lawyer/{{this.id}}" method="post">
+                                <button type="submit">Видалити</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+
+        <div class="forma-table">
+            <form action="/create-special" method="post" class="form-style">
+                <div class="input-space">
+                    <input type="text" placeholder="Назва" name="name" class="text">
+                </div>
+                <div class="input-space">
+                    <input type="number" placeholder="Ціна" name="price" class="text">
+                </div>
+                <div class="button-form">
+                    <button type="submit">Додати</button>
+                </div>
+            </form>
+            <form action="/create-lawyer" method="post" class="form-style">
+                <div class="input-space">
+                    <input type="text" placeholder="Ім'я" name="name" class="text">
+                </div>
+                <div class="input-space select-style">
+                    <select name="specialId">
+                        {{#each specials}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="button-form">
+                    <button type="submit">Додати</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="repost">
+        <table class="table2">
+            <tr>
+                <th>Звіти</th>
+            </tr>
+            {{!-- Запит 1 --}}
+            <tr>
+                <td>Яка спеціалізація має найбільшу кількість юристів?</td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Назва спеціальності</th>
+                            <th>Кількість юристів</th>
+                        </tr>
+                        {{#each query1}}
+                        <tr>
+                            <td>{{this.special}}</td>
+                            <td>{{this.lawyer_count}}</td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </td>
+            </tr>
+            {{!-- Кінець запиту 1 --}}
+
+            
+        </table>
+    </div>
+</body>
+
+</html>
